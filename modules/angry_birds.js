@@ -4,7 +4,7 @@ module.exports = {
       "id": 0,
       "name":"Red",
       "abilities":"Targeting directly at pigs",
-      "image":"http://bit.ly/1qsISE1",
+      "image":"http://bit.ly/1qsISE1",ذ
       "group":"The Flock",
       "species":"bird",
       "feels":"Cupcakes"
