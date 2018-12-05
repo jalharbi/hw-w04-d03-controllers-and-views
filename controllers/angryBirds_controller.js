@@ -1,28 +1,31 @@
 var express = require('express');
 var router = express.Router();
 
-var birds = require('../modules/angry_birds');
+var angryBirds = require('../modules/angry_birds');
 
-// get the object value 
-router.get('/', function(request,response){
-    var typeOfBirds = birds;
-
-response.send(` the birds catagory ${typeOfBirds}`)
-})
+// check the / works in the page using JS response.send
+// router.get('/', function(request,response){
+// response.send(` the birds catagories`)
+// })
   
+// to show the HTML we need response.render
+router.get('/', function(request,response){
+console.log(angryBirds.birds);
+var mustacheData = {
+    birdList: angryBirds.birds
+};
 
-router.get('/:bird', function (request, response) {
-    var angryBirdCatagory = request.params.bird;
-    var birds = birds[angryBirdCatagory]
- 
-    var mustacheVariable = {
-        angryBirdsList: birds,
-        angryBirdsid: birds.id,
-        angryBirdsAbilites: birds.abilites,
-        angryBirdsGroup: birds.group,
-        angryBirdsSpecies: birds.species,
-        angryBirdsFeels: birds.feels,
-    }
-response.render('./angry_birds/index', mustacheVariable) 
+    response.render('./angry_birds/index',mustacheData )
+})
+      
+router.get('/:id', function (request, response) {
+    var birdId = request.params.id;
+    console.log(`this the list  ${birdId}`);
+var mustacheData = {
+    bird: angryBirds.birds[birdId],
+};
+response.render('./angry_birds/show', mustacheData);
+    
 })
 module.exports = router;
+ 
